@@ -41,6 +41,10 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataSetDJBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetDJ = new DBManagementSystem.DataSetDJ();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBox4 = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -115,7 +119,7 @@
             this.groupBox2.Controls.Add(this.checkedListBox1);
             this.groupBox2.Location = new System.Drawing.Point(462, 23);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(436, 507);
+            this.groupBox2.Size = new System.Drawing.Size(436, 793);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Parameters";
@@ -123,9 +127,9 @@
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(29, 419);
+            this.button2.Location = new System.Drawing.Point(27, 714);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(381, 61);
+            this.button2.Size = new System.Drawing.Size(383, 61);
             this.button2.TabIndex = 1;
             this.button2.Text = "Select";
             this.button2.UseVisualStyleBackColor = false;
@@ -137,7 +141,7 @@
             this.checkedListBox1.FormattingEnabled = true;
             this.checkedListBox1.Location = new System.Drawing.Point(27, 54);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(383, 334);
+            this.checkedListBox1.Size = new System.Drawing.Size(383, 634);
             this.checkedListBox1.TabIndex = 0;
             // 
             // dataGridView1
@@ -148,7 +152,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowTemplate.Height = 37;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 507);
+            this.dataGridView1.Size = new System.Drawing.Size(800, 793);
             this.dataGridView1.TabIndex = 7;
             // 
             // dataSetDJBindingSource
@@ -161,11 +165,49 @@
             this.dataSetDJ.DataSetName = "DataSetDJ";
             this.dataSetDJ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(22, 532);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(413, 35);
+            this.textBox1.TabIndex = 8;
+            this.textBox1.Text = "IP address";
+            this.textBox1.Click += new System.EventHandler(this.textBox1_Click);
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(22, 596);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(413, 35);
+            this.textBox2.TabIndex = 9;
+            this.textBox2.Text = "Port";
+            this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
+            // 
+            // textBox3
+            // 
+            this.textBox3.Location = new System.Drawing.Point(22, 658);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.Size = new System.Drawing.Size(413, 35);
+            this.textBox3.TabIndex = 10;
+            this.textBox3.Text = "User";
+            // 
+            // textBox4
+            // 
+            this.textBox4.Location = new System.Drawing.Point(22, 720);
+            this.textBox4.Name = "textBox4";
+            this.textBox4.Size = new System.Drawing.Size(413, 35);
+            this.textBox4.TabIndex = 11;
+            this.textBox4.Text = "Password";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1743, 559);
+            this.ClientSize = new System.Drawing.Size(1743, 841);
+            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -179,6 +221,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataSetDJBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetDJ)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -196,6 +239,10 @@
         private DataSetDJ dataSetDJ;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBox4;
     }
 }
 

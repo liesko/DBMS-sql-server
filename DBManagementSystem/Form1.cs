@@ -31,12 +31,18 @@ namespace DBManagementSystem
             checkedColumns = new List<string>();
             actualDatabase = "";
             actualTable = "";
+            textBox4.PasswordChar = '*';
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+            String connectionString = "DataSource=" + textBox1.Text + "," + textBox2.Text + "; User ID=" + textBox3.Text + ";Password=" + textBox4;
+            //    "Data Source=127.0.0.1,3306;User ID=sa;Password=oracle";
             // connect to a database
-            if(isConnected(connection))
+            Console.WriteLine(connectionString);
+            //connection = new SqlConnection(connectionString);
+            if (isConnected(connection))
             {
                 getDatabases();
             }
@@ -165,6 +171,42 @@ namespace DBManagementSystem
             {
                 checkedListBox1.Items.Insert(0, tableName);
             }
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            String text = "IP address";
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            String text = "port";
+        }
+
+        private void textBox1_ControlRemoved(object sender, ControlEventArgs e)
+        {
+
+        }
+
+        private void textBox1_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "";
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = "";
+        }
+
+        private void textBox1_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+
         }
 
         private void fillGrid()
