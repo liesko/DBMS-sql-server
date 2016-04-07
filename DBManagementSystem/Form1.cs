@@ -152,6 +152,8 @@ namespace DBManagementSystem
             {
                 checkedColumns.Add(itemChecked.ToString());
             }
+
+            fillGrid();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -163,6 +165,36 @@ namespace DBManagementSystem
             {
                 checkedListBox1.Items.Insert(0, tableName);
             }
+        }
+
+        private void fillGrid()
+        {
+
+            // vytvorenie prikazu
+            string command = "select ";
+
+            if (isConnected(connection))
+            {
+                for(int i = 0; i < checkedColumns.Count - 1; i++)
+                {
+                    command += checkedColumns[i] + ", ";
+                }
+                command += checkedColumns.Last() + " from " + actualTable;
+            }
+            Console.WriteLine(command);
+
+            // pripojenie a selectovanie
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(command, connection);
+
+            SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
+
+            DataTable table = new DataTable();
+            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            dataAdapter.Fill(table);
+
+            dataGridView1.ReadOnly = true;
+            dataGridView1.DataSource = table;
+            connection.Close();
         }
     }
 }
