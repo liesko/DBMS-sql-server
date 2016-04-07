@@ -18,6 +18,7 @@ namespace DBManagementSystem
         private List<string> databases;
         private List<string> tables;
         private List<string> columns;
+        private List<string> checkedColumns;
         private string actualDatabase, actualTable;
 
         public Form1(SqlConnection pConnection)
@@ -27,6 +28,7 @@ namespace DBManagementSystem
             databases = new List<string>();
             tables = new List<string>();
             columns = new List<string>();
+            checkedColumns = new List<string>();
             actualDatabase = "";
             actualTable = "";
         }
@@ -143,11 +145,24 @@ namespace DBManagementSystem
             comboBox2.DataSource = tables;
         }
 
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+            checkedColumns = new List<string>();
+            foreach (object itemChecked in checkedListBox1.CheckedItems)
+            {
+                checkedColumns.Add(itemChecked.ToString());
+            }
+        }
+
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
             actualTable = comboBox2.GetItemText(this.comboBox2.SelectedItem);
             getColumns(actualTable);
-
+            checkedListBox1.Items.Clear();
+            foreach (String tableName in columns)
+            {
+                checkedListBox1.Items.Insert(0, tableName);
+            }
         }
     }
 }

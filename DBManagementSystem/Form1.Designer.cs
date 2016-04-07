@@ -144,11 +144,8 @@
             // 
             // checkedListBox1
             // 
+            this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "column1",
-            "column2",
-            "column3"});
             this.checkedListBox1.Location = new System.Drawing.Point(27, 54);
             this.checkedListBox1.Name = "checkedListBox1";
             this.checkedListBox1.Size = new System.Drawing.Size(383, 334);
@@ -163,6 +160,7 @@
             this.button2.TabIndex = 1;
             this.button2.Text = "Select";
             this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // Form1
             // 
