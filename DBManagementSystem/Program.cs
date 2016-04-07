@@ -18,7 +18,7 @@ namespace DBManagementSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            SqlConnection connection = new SqlConnection();
+            SqlConnection connection = new SqlConnection("Data Source=127.0.0.1,3306;Initial Catalog=DatabazoveJazyky;User ID=sa;Password=oracle");
 
             Application.Run(new Form1(connection));
         }
