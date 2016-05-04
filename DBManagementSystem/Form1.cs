@@ -182,19 +182,20 @@ namespace DBManagementSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string objekt = comboBox1.GetItemText(this.comboBox1.SelectedItem);
+            string objekt = comboBox3.GetItemText(comboBox3.SelectedItem);
             string meno = textBox1.Text;
 
             if (objekt == "Table")
             {
-                Console.WriteLine("Vytvarame tabulu");
+                ObjectCreator.CreateTable(_connection, meno);
             } else if (objekt == "Database")
             {
-                Console.WriteLine("Vytvarame db");
+                ObjectCreator.CreateDatabase(_connection, meno);
             }
             else if (objekt == "Column")
             {
-                Console.WriteLine("Vytvarame stlpec");
+                Console.WriteLine("Skusame vytvorit nieco nove");
+                ObjectCreator.CreateColumn(_connection, meno);
             }
         }
 
@@ -202,6 +203,29 @@ namespace DBManagementSystem
         {
             new ExportDialog().ShowDialog("Export Data");
             Exporter.Export(dataGridView1);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            _connection.CheckedColumns = new List<string>();
+            foreach (object itemChecked in checkedListBox1.CheckedItems)
+            {
+                _connection.CheckedColumns.Add(itemChecked.ToString());
+            }
+            ObjectRemover.DeleteColumns(_connection);
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            ObjectRemover.DeleteDatabase(_connection);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            
+            ObjectRemover.DeleteTable(_connection);
+            ChangeComboBox2();
+            comboBox2.Refresh();
         }
     }
 }
