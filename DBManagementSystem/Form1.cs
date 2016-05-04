@@ -1,123 +1,101 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DBManagementSystem.DataHandler;
+using DBManagementSystem.Security;
+using DBManagementSystem.View;
 
 namespace DBManagementSystem
 {
     public partial class Form1 : Form
     {
-        SqlConnection connection;
-        private List<string> databases;
-        private List<string> tables;
-        private List<string> columns;
-        private List<string> checkedColumns;
-        private string actualDatabase, actualTable;
+        private NewConnection _connection;
 
-        public Form1(SqlConnection pConnection)
+        public Form1(NewConnection connection)
         {
-            this.connection = pConnection;
+            this._connection = connection;
             InitializeComponent();
-            databases = new List<string>();
-            tables = new List<string>();
-            columns = new List<string>();
-            checkedColumns = new List<string>();
-            actualDatabase = "";
-            actualTable = "";
-            textBox4.PasswordChar = '*';
+            _connection.Databases = new List<string>();
+            _connection.Tables = new List<string>();
+            _connection.Columns = new List<string>();
+            _connection.CheckedColumns = new List<string>();
+            _connection.ActualDatabase = "";
+            _connection.ActualTable = "";
+            InitializeApplication();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void InitializeApplication()
         {
 
-            String connectionString = "DataSource=" + textBox1.Text + "," + textBox2.Text + "; User ID=" + textBox3.Text + ";Password=" + textBox4;
-            //    "Data Source=127.0.0.1,3306;User ID=sa;Password=oracle";
-            // connect to a database
-            Console.WriteLine(connectionString);
-            //connection = new SqlConnection(connectionString);
-            if (isConnected(connection))
+            if (_connection.IsConnected)
             {
-                getDatabases();
+                GetDatabases();
             }
-            
-            //databases.Add("Prva databaza");
-            //databases.Add("Druha databaza");
-            comboBox1.DataSource = databases;
-            
+
+            comboBox1.DataSource = _connection.Databases;
         }
 
-        public void getDatabases()
+        public void GetDatabases()
         {
-            SqlCommand cmd = new SqlCommand();
-            SqlDataReader reader;
-            SqlConnection _c = connection;
+            SqlConnection c = _connection.Connection;
+            SqlCommand cmd = new SqlCommand("SELECT name FROM master.dbo.sysdatabases");
+            //cmd.CommandType = CommandType.Text;
+            cmd.Connection = c;
 
-            cmd.CommandText = "SELECT name FROM master.dbo.sysdatabases";
-            cmd.CommandType = CommandType.Text;
-            cmd.Connection = connection;
+            SqlDataReader reader = cmd.ExecuteReader();
 
-            reader = cmd.ExecuteReader();
-
-            while (reader.Read())
-            {
-                databases.Add(Convert.ToString(reader["name"]));
-                Console.WriteLine(Convert.ToString(reader["name"]));
-            }
-            connection.Close();
+                while (reader.Read())
+                {
+                    _connection.Databases.Add(Convert.ToString(reader["name"]));
+                    Console.WriteLine(Convert.ToString(reader["name"]));
+                }
+                reader.Close();
         }
 
-        public void getTables(String databaseName)
+        public void GetTables(String databaseName)
         {
-            string connectionString = "Data Source=127.0.0.1,3306; Database=" + databaseName + "; User ID = sa; Password = oracle";
-            connection = new SqlConnection(connectionString);
-            //connection.ChangeDatabase(databaseName);
+            _connection.ChangeDatabaseName(databaseName);
 
-            tables = new List<string>();
+            _connection.Tables = new List<string>();
 
-            if (isConnected(connection))
+            if (_connection.IsConnected)
             {
-                DataTable dt = connection.GetSchema("Tables");
+                DataTable dt = _connection.Connection.GetSchema("Tables");
                 foreach (DataRow row in dt.Rows)
                 {
                     string tablename = (string)row[2];
-                    tables.Add(tablename);
+                    _connection.Tables.Add(tablename);
                 }
-                connection.Close();
             }
         }
 
-        public void getColumns(String tableName)
+        public void GetColumns(String tableName)
         {
-            columns = new List<string>();
+            _connection.Columns = new List<string>();
 
-            if (isConnected(connection))
+            if (_connection.IsConnected)
             {
                 string[] restrictions = new string[4] { null, null, tableName, null };
 
-                //connection.ChangeDatabase(actualDatabase);
+                //_connection.ChangeDatabaseName(_connection.ActualDatabase);
 
                 var columnList =
-                    connection.GetSchema("Columns", restrictions)
+                    _connection.Connection.GetSchema("Columns", restrictions)
                         .AsEnumerable()
                         .Select(s => s.Field<String>("Column_Name"))
                         .ToList();
                 foreach (var columnName in columnList)
                 {
-                    columns.Add(columnName);
+                    _connection.Columns.Add(columnName);
                     Console.WriteLine(columnName);
                 }
-                connection.Close();
             }
         }
 
-        public bool isConnected(SqlConnection connectionToTest)
+        public bool IsConnected(SqlConnection connectionToTest)
         {
             try
             {
@@ -135,98 +113,62 @@ namespace DBManagementSystem
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            actualDatabase = comboBox1.GetItemText(this.comboBox1.SelectedItem);
-            getTables(actualDatabase);
-            Console.WriteLine(actualDatabase);
-            changeComboBox2();
+            _connection.ActualDatabase = comboBox1.GetItemText(this.comboBox1.SelectedItem);
+            GetTables(_connection.ActualDatabase);
+            Console.WriteLine(_connection.ActualDatabase);
+            ChangeComboBox2();
         }
 
-        private void changeComboBox2()
+        private void ChangeComboBox2()
         {
-            comboBox2.DataSource = tables;
+            comboBox2.DataSource = _connection.Tables;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            comboBox2.DataSource = tables;
+            comboBox2.DataSource = _connection.Tables;
         }
 
         private void button2_Click_1(object sender, EventArgs e)
         {
-            checkedColumns = new List<string>();
+            _connection.CheckedColumns = new List<string>();
             foreach (object itemChecked in checkedListBox1.CheckedItems)
             {
-                checkedColumns.Add(itemChecked.ToString());
+                _connection.CheckedColumns.Add(itemChecked.ToString());
             }
 
-            fillGrid();
+            FillGrid();
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            actualTable = comboBox2.GetItemText(this.comboBox2.SelectedItem);
-            getColumns(actualTable);
+            _connection.ActualTable = comboBox2.GetItemText(this.comboBox2.SelectedItem);
+            GetColumns(_connection.ActualTable);
             checkedListBox1.Items.Clear();
-            foreach (String tableName in columns)
+            foreach (String tableName in _connection.Columns)
             {
                 checkedListBox1.Items.Insert(0, tableName);
             }
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            String text = "IP address";
-
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            String text = "port";
-        }
-
-        private void textBox1_ControlRemoved(object sender, ControlEventArgs e)
-        {
-
-        }
-
-        private void textBox1_Click(object sender, EventArgs e)
-        {
-            textBox1.Text = "";
-        }
-
-        private void textBox2_Click(object sender, EventArgs e)
-        {
-            textBox2.Text = "";
-        }
-
-        private void textBox1_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox2_Leave(object sender, EventArgs e)
-        {
-
-        }
-
-        private void fillGrid()
+        private void FillGrid()
         {
 
             // vytvorenie prikazu
             string command = "select ";
 
-            if (isConnected(connection))
+            if (_connection.IsConnected)
             {
-                for(int i = 0; i < checkedColumns.Count - 1; i++)
+                for(int i = 0; i < _connection.CheckedColumns.Count - 1; i++)
                 {
-                    command += checkedColumns[i] + ", ";
+                    command += _connection.CheckedColumns[i] + ", ";
                 }
-                command += checkedColumns.Last() + " from " + actualTable;
+                command += _connection.CheckedColumns.Last() + " from " + _connection.ActualTable;
             }
             Console.WriteLine(command);
 
             // pripojenie a selectovanie
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command, connection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(command, _connection.Connection);
 
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
 
@@ -236,7 +178,30 @@ namespace DBManagementSystem
 
             dataGridView1.ReadOnly = true;
             dataGridView1.DataSource = table;
-            connection.Close();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string objekt = comboBox1.GetItemText(this.comboBox1.SelectedItem);
+            string meno = textBox1.Text;
+
+            if (objekt == "Table")
+            {
+                Console.WriteLine("Vytvarame tabulu");
+            } else if (objekt == "Database")
+            {
+                Console.WriteLine("Vytvarame db");
+            }
+            else if (objekt == "Column")
+            {
+                Console.WriteLine("Vytvarame stlpec");
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            new ExportDialog().ShowDialog("Export Data");
+            Exporter.Export(dataGridView1);
         }
     }
 }

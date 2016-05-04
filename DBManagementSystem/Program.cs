@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using DBManagementSystem.Security;
+using DBManagementSystem.View;
 
 namespace DBManagementSystem
 {
@@ -18,9 +20,17 @@ namespace DBManagementSystem
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            SqlConnection connection = new SqlConnection("Data Source=127.0.0.1,3306;Initial Catalog=DatabazoveJazyky;User ID=sa;Password=oracle");
 
-            Application.Run(new Form1(connection));
+            string promptValue = new LoginDialog().ShowDialog("Login Form");
+            //"Data Source=127.0.0.1,3306;Initial Catalog=DatabazoveJazyky;User ID=sa;Password=oracle"
+
+            SqlConnection connection = new SqlConnection(promptValue);
+            NewConnection myConnection = new NewConnection(connection);
+            if (myConnection.IsConnected)
+            {
+                Application.Run(new Form1(myConnection));
+            }
+
         }
     }
 }
