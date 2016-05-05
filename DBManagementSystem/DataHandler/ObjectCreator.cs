@@ -15,12 +15,21 @@ namespace DBManagementSystem.DataHandler
             
         }
 
-        public static void CreateColumn(NewConnection connection, string columnName)
+        public static void CreateColumn(NewConnection connection, string columnName, string type, bool autoIncrement, bool unique, bool primaryKey)
         {
-            string commandString = "ALTER TABLE " + connection.ActualTable +" ADD " + columnName + " VARCHAR(20);";
+            string commandString = "ALTER TABLE " + connection.ActualTable +" ADD " + columnName + " " + type;
+            commandString = autoIncrement == true ? commandString + " IDENTITY(1,1) " : ";";
             Console.WriteLine(commandString);
             SqlCommand sqlCmd = new SqlCommand(commandString, connection.Connection);
             sqlCmd.ExecuteNonQuery();
+
+            if (unique)
+            {
+                commandString = "ALTER TABLE " + connection.ActualTable + " ADD UNIQUE ( " + columnName+ ");";
+                Console.WriteLine(commandString);
+                sqlCmd = new SqlCommand(commandString, connection.Connection);
+                sqlCmd.ExecuteNonQuery();
+            }
         }
 
         public static void CreateDatabase(NewConnection connection, string databaseName)
