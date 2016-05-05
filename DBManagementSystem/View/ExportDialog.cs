@@ -27,7 +27,7 @@ namespace DBManagementSystem.View
 
             Button confirmation = new Button()
             {
-                Text = "Export",
+                Text = "ExportCSV",
                 Left = 350,
                 Width = 100,
                 Top = 150,
