@@ -1,5 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System.Data;
+using System.Data.SqlClient;
+using System.Windows.Forms;
 using System.IO;
+using DBManagementSystem.Security;
 
 namespace DBManagementSystem.DataHandler
 {
@@ -8,7 +11,7 @@ namespace DBManagementSystem.DataHandler
         public static string FileName { get; set; }
         public static string Path { get; set; }
 
-        public static void Export(DataGridView dataGridView)
+        public static void ExportCSV(DataGridView dataGridView)
         {
             //Build the CSV file data as a Comma separated string.
             string csv = string.Empty;
@@ -43,6 +46,28 @@ namespace DBManagementSystem.DataHandler
             //Exporting to CSV.
             string folderPath = "C:\\CSV\\";
             File.WriteAllText(folderPath + FileName +".csv", csv);
+        }
+
+        public static void ExportXML(NewConnection connection)
+        {
+            var connStr = connection.Connection.ConnectionString;
+            var xmlFileData = "";
+            DataSet ds = new DataSet();
+            var tables = new[] { connection.ActualTable, "export" };
+            foreach (var table in tables)
+            {
+
+                var query = "SELECT * FROM " + table;
+                SqlConnection conn = new SqlConnection(connStr);
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                SqlDataAdapter da = new SqlDataAdapter(cmd);
+                da.Fill(ds);
+                //conn.Close();
+                conn.Dispose();
+                xmlFileData += ds.GetXml();
+            }
+            File.WriteAllText("C:/CSV/SexportXML.xml", xmlFileData);
         }
     }
 }
