@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -137,7 +138,7 @@ namespace DBManagementSystem
                 _connection.CheckedColumns.Add(itemChecked.ToString());
             }
 
-            FillGrid();
+            FillGrid(ActualCommand());
         }
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
@@ -151,22 +152,8 @@ namespace DBManagementSystem
             }
         }
 
-        private void FillGrid()
+        private void FillGrid(string command)
         {
-
-            // vytvorenie prikazu
-            string command = "select ";
-
-            if (_connection.IsConnected)
-            {
-                for(int i = 0; i < _connection.CheckedColumns.Count - 1; i++)
-                {
-                    command += _connection.CheckedColumns[i] + ", ";
-                }
-                command += _connection.CheckedColumns.Last() + " from " + _connection.ActualTable;
-            }
-            Console.WriteLine(command);
-
             // pripojenie a selectovanie
             SqlDataAdapter dataAdapter = new SqlDataAdapter(command, _connection.Connection);
 
@@ -194,15 +181,25 @@ namespace DBManagementSystem
             }
             else if (objekt == "Column")
             {
-                Console.WriteLine("Skusame vytvorit nieco nove");
-                ObjectCreator.CreateColumn(_connection, meno);
+                string columnType = comboBox5.GetItemText(comboBox5.SelectedItem);
+                bool autoIncrement = checkBox1.Checked;
+                bool pk = comboBox6.GetItemText(comboBox6.SelectedItem) == "Primary Key" ? true : false;
+                bool unique = comboBox6.GetItemText(comboBox6.SelectedItem) == "Unique" ? true : false;
+                ObjectCreator.CreateColumn(_connection, meno, columnType, autoIncrement, unique, pk);
             }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            new ExportDialog().ShowDialog("Export Data");
-            Exporter.Export(dataGridView1);
+            string type = comboBox4.GetItemText(comboBox4.SelectedItem);
+            if (type == "CSV")
+            {
+                new ExportDialog().ShowDialog("ExportCSV Data");
+                Exporter.ExportCSV(dataGridView1);
+            } else if (type == "XML")
+            {
+                Exporter.ExportXML(_connection);
+            }
         }
 
         private void button7_Click(object sender, EventArgs e)
@@ -226,6 +223,54 @@ namespace DBManagementSystem
             ObjectRemover.DeleteTable(_connection);
             ChangeComboBox2();
             comboBox2.Refresh();
+        }
+
+        private void textBox2_Click(object sender, EventArgs e)
+        {
+            textBox2.Text = "";
+        }
+
+        private void textBox2_Leave(object sender, EventArgs e)
+        {
+            if (textBox2.Text == "")
+            {
+                textBox2.Text = "where [column] < [operand]";
+            }
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            string condition = textBox2.Text;
+            string command = DataFilter.Select(_connection, condition);
+            FillGrid(command);
+        }
+
+        private string ActualCommand()
+        {
+            // vytvorenie prikazu
+            string command = "select ";
+
+            if (_connection.IsConnected)
+            {
+                for (int i = 0; i < _connection.CheckedColumns.Count - 1; i++)
+                {
+                    command += _connection.CheckedColumns[i] + ", ";
+                }
+                command += _connection.CheckedColumns.Last() + " from " + _connection.ActualTable;
+            }
+            return command;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            Importer.ImportData(_connection, "");
+            
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            string command = textBox3.Text;
+
         }
     }
 }

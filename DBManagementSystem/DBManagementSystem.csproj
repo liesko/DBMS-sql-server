@@ -46,9 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataHandler\DataFilter.cs" />
     <Compile Include="DataHandler\Exporter.cs" />
+    <Compile Include="DataHandler\Importer.cs" />
     <Compile Include="DataHandler\ObjectCreator.cs" />
     <Compile Include="DataHandler\ObjectRemover.cs" />
+    <Compile Include="DataHandler\ObjectUpdater.cs" />
     <Compile Include="DataSetDJ.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
