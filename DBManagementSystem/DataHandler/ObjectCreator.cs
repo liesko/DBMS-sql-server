@@ -12,13 +12,19 @@ namespace DBManagementSystem.DataHandler
     {
         public static void CreateTable(NewConnection connection, string tableName)
         {
-            
+            string commandString = "CREATE TABLE " + tableName + " ( id int primary key );";
+            SqlCommand sqlCmd = new SqlCommand(commandString, connection.Connection);
+            sqlCmd.ExecuteNonQuery();
         }
 
         public static void CreateColumn(NewConnection connection, string columnName, string type, bool autoIncrement, bool unique, bool primaryKey)
         {
             string commandString = "ALTER TABLE " + connection.ActualTable +" ADD " + columnName + " " + type;
-            commandString = autoIncrement == true ? commandString + " IDENTITY(1,1) " : ";";
+            if (autoIncrement)
+            {
+                commandString += " IDENTITY(1,1)";
+            }
+            commandString += ";";
             Console.WriteLine(commandString);
             SqlCommand sqlCmd = new SqlCommand(commandString, connection.Connection);
             sqlCmd.ExecuteNonQuery();
@@ -34,7 +40,9 @@ namespace DBManagementSystem.DataHandler
 
         public static void CreateDatabase(NewConnection connection, string databaseName)
         {
-
+            var command = connection.Connection.CreateCommand();
+            command.CommandText = "CREATE DATABASE " + databaseName;
+            command.ExecuteNonQuery();
         }
     }
 }

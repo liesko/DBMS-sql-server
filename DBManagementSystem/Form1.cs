@@ -14,7 +14,8 @@ namespace DBManagementSystem
     public partial class Form1 : Form
     {
         private NewConnection _connection;
-
+        private SqlDataAdapter dataAdapter;
+        private DataSet set;
         public Form1(NewConnection connection)
         {
             this._connection = connection;
@@ -155,16 +156,21 @@ namespace DBManagementSystem
         private void FillGrid(string command)
         {
             // pripojenie a selectovanie
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command, _connection.Connection);
+            dataAdapter = new SqlDataAdapter(command, _connection.Connection);
 
             SqlCommandBuilder commandBuilder = new SqlCommandBuilder(dataAdapter);
 
-            DataTable table = new DataTable();
-            table.Locale = System.Globalization.CultureInfo.InvariantCulture;
-            dataAdapter.Fill(table);
+            set = new System.Data.DataSet();
 
-            dataGridView1.ReadOnly = true;
-            dataGridView1.DataSource = table;
+
+            //DataTable table = new DataTable();
+            //table.Locale = System.Globalization.CultureInfo.InvariantCulture;
+            dataAdapter.Fill(set);
+
+
+
+            dataGridView1.ReadOnly = false;
+            dataGridView1.DataSource = set.Tables[0];
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -185,6 +191,7 @@ namespace DBManagementSystem
                 bool autoIncrement = checkBox1.Checked;
                 bool pk = comboBox6.GetItemText(comboBox6.SelectedItem) == "Primary Key" ? true : false;
                 bool unique = comboBox6.GetItemText(comboBox6.SelectedItem) == "Unique" ? true : false;
+                //WriteLine(meno + columnType + "|"+ autoIncrement + unique +pk);
                 ObjectCreator.CreateColumn(_connection, meno, columnType, autoIncrement, unique, pk);
             }
         }
@@ -271,6 +278,19 @@ namespace DBManagementSystem
         {
             string command = textBox3.Text;
 
+        }
+
+        private void dataGridView1_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                SqlCommandBuilder bulder = new SqlCommandBuilder(dataAdapter);
+                dataAdapter.Update(set);
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.StackTrace);
+            }
         }
     }
 }
