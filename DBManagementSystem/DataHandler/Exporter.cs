@@ -53,7 +53,7 @@ namespace DBManagementSystem.DataHandler
             var connStr = connection.Connection.ConnectionString;
             var xmlFileData = "";
             DataSet ds = new DataSet();
-            var tables = new[] { connection.ActualTable, "export" };
+            var tables = new[] { connection.ActualTable };
             foreach (var table in tables)
             {
 
@@ -67,7 +67,7 @@ namespace DBManagementSystem.DataHandler
                 conn.Dispose();
                 xmlFileData += ds.GetXml();
             }
-            File.WriteAllText("C:/CSV/SexportXML.xml", xmlFileData);
+            File.WriteAllText("C:/CSV/exportXML.xml", xmlFileData);
         }
     }
 }

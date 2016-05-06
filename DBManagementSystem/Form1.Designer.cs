@@ -32,36 +32,36 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.databaseLabel = new System.Windows.Forms.Label();
+            this.tableLabel = new System.Windows.Forms.Label();
+            this.databaseCombo = new System.Windows.Forms.ComboBox();
+            this.tablesCombo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
+            this.deleteTableBtn = new System.Windows.Forms.Button();
+            this.deleteDatabaseBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.deleteBtn = new System.Windows.Forms.Button();
+            this.selectBtn = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.dataSetDJBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSetDJ = new DBManagementSystem.DataSetDJ();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.comboBox6 = new System.Windows.Forms.ComboBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.comboBox5 = new System.Windows.Forms.ComboBox();
+            this.columnPropsCombo = new System.Windows.Forms.ComboBox();
+            this.autoIncrementCheckBox = new System.Windows.Forms.CheckBox();
+            this.columnTypeCombo = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.nameTextBox = new System.Windows.Forms.TextBox();
+            this.createBtn = new System.Windows.Forms.Button();
+            this.objectTypeCombo = new System.Windows.Forms.ComboBox();
+            this.exportBtn = new System.Windows.Forms.Button();
+            this.importBtn = new System.Windows.Forms.Button();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button8 = new System.Windows.Forms.Button();
+            this.filterDataBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
-            this.comboBox4 = new System.Windows.Forms.ComboBox();
+            this.importExportCombo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
+            this.updateDataBtn = new System.Windows.Forms.Button();
             this.textBox3 = new System.Windows.Forms.TextBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -75,120 +75,133 @@
             this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // databaseLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(132, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 29);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Database";
+            this.databaseLabel.AutoSize = true;
+            this.databaseLabel.Location = new System.Drawing.Point(57, 46);
+            this.databaseLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.databaseLabel.Name = "databaseLabel";
+            this.databaseLabel.Size = new System.Drawing.Size(53, 13);
+            this.databaseLabel.TabIndex = 1;
+            this.databaseLabel.Text = "Database";
             // 
-            // label2
+            // tableLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(155, 287);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 29);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Table";
+            this.tableLabel.AutoSize = true;
+            this.tableLabel.Location = new System.Drawing.Point(66, 129);
+            this.tableLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
+            this.tableLabel.Name = "tableLabel";
+            this.tableLabel.Size = new System.Drawing.Size(34, 13);
+            this.tableLabel.TabIndex = 2;
+            this.tableLabel.Text = "Table";
             // 
-            // comboBox1
+            // databaseCombo
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(33, 145);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(340, 37);
-            this.comboBox1.TabIndex = 3;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.databaseCombo.FormattingEnabled = true;
+            this.databaseCombo.Location = new System.Drawing.Point(14, 65);
+            this.databaseCombo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.databaseCombo.Name = "databaseCombo";
+            this.databaseCombo.Size = new System.Drawing.Size(148, 21);
+            this.databaseCombo.TabIndex = 3;
+            this.databaseCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
-            // comboBox2
+            // tablesCombo
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(33, 331);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(340, 37);
-            this.comboBox2.TabIndex = 4;
-            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
+            this.tablesCombo.FormattingEnabled = true;
+            this.tablesCombo.Location = new System.Drawing.Point(14, 148);
+            this.tablesCombo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.tablesCombo.Name = "tablesCombo";
+            this.tablesCombo.Size = new System.Drawing.Size(148, 21);
+            this.tablesCombo.TabIndex = 4;
+            this.tablesCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox1.Controls.Add(this.button6);
-            this.groupBox1.Controls.Add(this.button5);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.comboBox2);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Location = new System.Drawing.Point(22, 23);
+            this.groupBox1.Controls.Add(this.deleteTableBtn);
+            this.groupBox1.Controls.Add(this.deleteDatabaseBtn);
+            this.groupBox1.Controls.Add(this.databaseLabel);
+            this.groupBox1.Controls.Add(this.tablesCombo);
+            this.groupBox1.Controls.Add(this.databaseCombo);
+            this.groupBox1.Controls.Add(this.tableLabel);
+            this.groupBox1.Location = new System.Drawing.Point(9, 10);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(413, 477);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox1.Size = new System.Drawing.Size(177, 214);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data Source";
             // 
-            // button6
+            // deleteTableBtn
             // 
-            this.button6.Location = new System.Drawing.Point(33, 388);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(340, 43);
-            this.button6.TabIndex = 6;
-            this.button6.Text = "Delete Table";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
+            this.deleteTableBtn.Location = new System.Drawing.Point(14, 174);
+            this.deleteTableBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.deleteTableBtn.Name = "deleteTableBtn";
+            this.deleteTableBtn.Size = new System.Drawing.Size(146, 19);
+            this.deleteTableBtn.TabIndex = 6;
+            this.deleteTableBtn.Text = "Delete Table";
+            this.deleteTableBtn.UseVisualStyleBackColor = true;
+            this.deleteTableBtn.Click += new System.EventHandler(this.button6_Click);
             // 
-            // button5
+            // deleteDatabaseBtn
             // 
-            this.button5.Location = new System.Drawing.Point(33, 202);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(340, 43);
-            this.button5.TabIndex = 5;
-            this.button5.Text = "Delete Database";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
+            this.deleteDatabaseBtn.Location = new System.Drawing.Point(14, 91);
+            this.deleteDatabaseBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.deleteDatabaseBtn.Name = "deleteDatabaseBtn";
+            this.deleteDatabaseBtn.Size = new System.Drawing.Size(146, 19);
+            this.deleteDatabaseBtn.TabIndex = 5;
+            this.deleteDatabaseBtn.Text = "Delete Database";
+            this.deleteDatabaseBtn.UseVisualStyleBackColor = true;
+            this.deleteDatabaseBtn.Click += new System.EventHandler(this.button5_Click);
             // 
             // groupBox2
             // 
             this.groupBox2.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox2.Controls.Add(this.button7);
-            this.groupBox2.Controls.Add(this.button2);
+            this.groupBox2.Controls.Add(this.deleteBtn);
+            this.groupBox2.Controls.Add(this.selectBtn);
             this.groupBox2.Controls.Add(this.checkedListBox1);
-            this.groupBox2.Location = new System.Drawing.Point(462, 23);
+            this.groupBox2.Location = new System.Drawing.Point(198, 10);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(436, 685);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox2.Size = new System.Drawing.Size(187, 307);
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Columns";
             // 
-            // button7
+            // deleteBtn
             // 
-            this.button7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button7.Location = new System.Drawing.Point(27, 584);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(383, 61);
-            this.button7.TabIndex = 2;
-            this.button7.Text = "Delete";
-            this.button7.UseVisualStyleBackColor = false;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
+            this.deleteBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.deleteBtn.Location = new System.Drawing.Point(12, 262);
+            this.deleteBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.deleteBtn.Name = "deleteBtn";
+            this.deleteBtn.Size = new System.Drawing.Size(164, 27);
+            this.deleteBtn.TabIndex = 2;
+            this.deleteBtn.Text = "Delete";
+            this.deleteBtn.UseVisualStyleBackColor = false;
+            this.deleteBtn.Click += new System.EventHandler(this.button7_Click);
             // 
-            // button2
+            // selectBtn
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button2.Location = new System.Drawing.Point(27, 504);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(383, 61);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Select";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click_1);
+            this.selectBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.selectBtn.Location = new System.Drawing.Point(12, 226);
+            this.selectBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.selectBtn.Name = "selectBtn";
+            this.selectBtn.Size = new System.Drawing.Size(164, 27);
+            this.selectBtn.TabIndex = 1;
+            this.selectBtn.Text = "Select";
+            this.selectBtn.UseVisualStyleBackColor = false;
+            this.selectBtn.Click += new System.EventHandler(this.button2_Click_1);
             // 
             // checkedListBox1
             // 
             this.checkedListBox1.CheckOnClick = true;
             this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Location = new System.Drawing.Point(27, 54);
+            this.checkedListBox1.Location = new System.Drawing.Point(12, 24);
+            this.checkedListBox1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(383, 424);
+            this.checkedListBox1.Size = new System.Drawing.Size(166, 184);
             this.checkedListBox1.TabIndex = 0;
             // 
             // dataGridView1
@@ -212,7 +225,8 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridView1.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dataGridView1.Location = new System.Drawing.Point(923, 23);
+            this.dataGridView1.Location = new System.Drawing.Point(396, 10);
+            this.dataGridView1.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -224,7 +238,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 37;
-            this.dataGridView1.Size = new System.Drawing.Size(1292, 793);
+            this.dataGridView1.Size = new System.Drawing.Size(554, 355);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
             // 
@@ -241,47 +255,51 @@
             // groupBox3
             // 
             this.groupBox3.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox3.Controls.Add(this.comboBox6);
-            this.groupBox3.Controls.Add(this.checkBox1);
-            this.groupBox3.Controls.Add(this.comboBox5);
+            this.groupBox3.Controls.Add(this.columnPropsCombo);
+            this.groupBox3.Controls.Add(this.autoIncrementCheckBox);
+            this.groupBox3.Controls.Add(this.columnTypeCombo);
             this.groupBox3.Controls.Add(this.label3);
-            this.groupBox3.Controls.Add(this.textBox1);
-            this.groupBox3.Controls.Add(this.button1);
-            this.groupBox3.Controls.Add(this.comboBox3);
-            this.groupBox3.Location = new System.Drawing.Point(22, 527);
+            this.groupBox3.Controls.Add(this.nameTextBox);
+            this.groupBox3.Controls.Add(this.createBtn);
+            this.groupBox3.Controls.Add(this.objectTypeCombo);
+            this.groupBox3.Location = new System.Drawing.Point(9, 236);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(413, 562);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox3.Size = new System.Drawing.Size(177, 252);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "New Object";
             // 
-            // comboBox6
+            // columnPropsCombo
             // 
-            this.comboBox6.FormattingEnabled = true;
-            this.comboBox6.Items.AddRange(new object[] {
+            this.columnPropsCombo.FormattingEnabled = true;
+            this.columnPropsCombo.Items.AddRange(new object[] {
             "Primary Key",
             "Unique",
             "Index"});
-            this.comboBox6.Location = new System.Drawing.Point(33, 324);
-            this.comboBox6.Name = "comboBox6";
-            this.comboBox6.Size = new System.Drawing.Size(340, 37);
-            this.comboBox6.TabIndex = 9;
-            this.comboBox6.Text = "Column Props";
+            this.columnPropsCombo.Location = new System.Drawing.Point(14, 145);
+            this.columnPropsCombo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.columnPropsCombo.Name = "columnPropsCombo";
+            this.columnPropsCombo.Size = new System.Drawing.Size(148, 21);
+            this.columnPropsCombo.TabIndex = 9;
+            this.columnPropsCombo.Text = "Column Props";
             // 
-            // checkBox1
+            // autoIncrementCheckBox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(33, 381);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(205, 33);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Auto Increment";
-            this.checkBox1.UseVisualStyleBackColor = true;
+            this.autoIncrementCheckBox.AutoSize = true;
+            this.autoIncrementCheckBox.Location = new System.Drawing.Point(14, 171);
+            this.autoIncrementCheckBox.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.autoIncrementCheckBox.Name = "autoIncrementCheckBox";
+            this.autoIncrementCheckBox.Size = new System.Drawing.Size(98, 17);
+            this.autoIncrementCheckBox.TabIndex = 8;
+            this.autoIncrementCheckBox.Text = "Auto Increment";
+            this.autoIncrementCheckBox.UseVisualStyleBackColor = true;
             // 
-            // comboBox5
+            // columnTypeCombo
             // 
-            this.comboBox5.FormattingEnabled = true;
-            this.comboBox5.Items.AddRange(new object[] {
+            this.columnTypeCombo.FormattingEnabled = true;
+            this.columnTypeCombo.Items.AddRange(new object[] {
             "Int",
             "Float",
             "Real",
@@ -293,154 +311,171 @@
             "Date",
             "DateTime",
             "Time"});
-            this.comboBox5.Location = new System.Drawing.Point(33, 269);
-            this.comboBox5.Name = "comboBox5";
-            this.comboBox5.Size = new System.Drawing.Size(340, 37);
-            this.comboBox5.TabIndex = 7;
-            this.comboBox5.Text = "Column Type";
+            this.columnTypeCombo.Location = new System.Drawing.Point(14, 121);
+            this.columnTypeCombo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.columnTypeCombo.Name = "columnTypeCombo";
+            this.columnTypeCombo.Size = new System.Drawing.Size(148, 21);
+            this.columnTypeCombo.TabIndex = 7;
+            this.columnTypeCombo.Text = "Column Type";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(153, 134);
+            this.label3.Location = new System.Drawing.Point(66, 60);
+            this.label3.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(78, 29);
+            this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 5;
             this.label3.Text = "Name";
             // 
-            // textBox1
+            // nameTextBox
             // 
-            this.textBox1.Location = new System.Drawing.Point(33, 186);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(340, 35);
-            this.textBox1.TabIndex = 6;
+            this.nameTextBox.Location = new System.Drawing.Point(14, 83);
+            this.nameTextBox.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.nameTextBox.Name = "nameTextBox";
+            this.nameTextBox.Size = new System.Drawing.Size(148, 20);
+            this.nameTextBox.TabIndex = 6;
             // 
-            // button1
+            // createBtn
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(33, 444);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(340, 61);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Create";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.createBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.createBtn.Location = new System.Drawing.Point(14, 199);
+            this.createBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.createBtn.Name = "createBtn";
+            this.createBtn.Size = new System.Drawing.Size(146, 27);
+            this.createBtn.TabIndex = 2;
+            this.createBtn.Text = "Create";
+            this.createBtn.UseVisualStyleBackColor = false;
+            this.createBtn.Click += new System.EventHandler(this.button1_Click);
             // 
-            // comboBox3
+            // objectTypeCombo
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.objectTypeCombo.FormattingEnabled = true;
+            this.objectTypeCombo.Items.AddRange(new object[] {
             "Database",
             "Table",
             "Column"});
-            this.comboBox3.Location = new System.Drawing.Point(33, 67);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(340, 37);
-            this.comboBox3.TabIndex = 5;
-            this.comboBox3.Text = "Object Type";
+            this.objectTypeCombo.Location = new System.Drawing.Point(14, 30);
+            this.objectTypeCombo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.objectTypeCombo.Name = "objectTypeCombo";
+            this.objectTypeCombo.Size = new System.Drawing.Size(148, 21);
+            this.objectTypeCombo.TabIndex = 5;
+            this.objectTypeCombo.Text = "Object Type";
             // 
-            // button3
+            // exportBtn
             // 
-            this.button3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button3.Location = new System.Drawing.Point(27, 135);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(383, 61);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Export Data";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.exportBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.exportBtn.Location = new System.Drawing.Point(12, 61);
+            this.exportBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.exportBtn.Name = "exportBtn";
+            this.exportBtn.Size = new System.Drawing.Size(164, 27);
+            this.exportBtn.TabIndex = 2;
+            this.exportBtn.Text = "Export Data";
+            this.exportBtn.UseVisualStyleBackColor = false;
+            this.exportBtn.Click += new System.EventHandler(this.button3_Click);
             // 
-            // button4
+            // importBtn
             // 
-            this.button4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button4.Location = new System.Drawing.Point(27, 230);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(383, 61);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "Import Data";
-            this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.importBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.importBtn.Location = new System.Drawing.Point(12, 103);
+            this.importBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.importBtn.Name = "importBtn";
+            this.importBtn.Size = new System.Drawing.Size(164, 27);
+            this.importBtn.TabIndex = 8;
+            this.importBtn.Text = "Import Data";
+            this.importBtn.UseVisualStyleBackColor = false;
+            this.importBtn.Click += new System.EventHandler(this.button4_Click);
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(64, 80);
+            this.textBox2.Location = new System.Drawing.Point(27, 36);
+            this.textBox2.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(799, 35);
+            this.textBox2.Size = new System.Drawing.Size(345, 20);
             this.textBox2.TabIndex = 9;
             this.textBox2.Text = "WHERE [column] < [operand]";
             this.textBox2.Click += new System.EventHandler(this.textBox2_Click);
             this.textBox2.Leave += new System.EventHandler(this.textBox2_Leave);
             // 
-            // button8
+            // filterDataBtn
             // 
-            this.button8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button8.Location = new System.Drawing.Point(878, 67);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(383, 61);
-            this.button8.TabIndex = 10;
-            this.button8.Text = "Filter Data";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
+            this.filterDataBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.filterDataBtn.Location = new System.Drawing.Point(376, 30);
+            this.filterDataBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.filterDataBtn.Name = "filterDataBtn";
+            this.filterDataBtn.Size = new System.Drawing.Size(164, 27);
+            this.filterDataBtn.TabIndex = 10;
+            this.filterDataBtn.Text = "Filter Data";
+            this.filterDataBtn.UseVisualStyleBackColor = false;
+            this.filterDataBtn.Click += new System.EventHandler(this.button8_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(59, 48);
+            this.label4.Location = new System.Drawing.Point(25, 22);
+            this.label4.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(116, 29);
+            this.label4.Size = new System.Drawing.Size(51, 13);
             this.label4.TabIndex = 11;
             this.label4.Text = "Condition";
             // 
-            // comboBox4
+            // importExportCombo
             // 
-            this.comboBox4.FormattingEnabled = true;
-            this.comboBox4.Items.AddRange(new object[] {
+            this.importExportCombo.FormattingEnabled = true;
+            this.importExportCombo.Items.AddRange(new object[] {
             "CSV",
             "XML",
             "SQL"});
-            this.comboBox4.Location = new System.Drawing.Point(27, 59);
-            this.comboBox4.Name = "comboBox4";
-            this.comboBox4.Size = new System.Drawing.Size(383, 37);
-            this.comboBox4.TabIndex = 12;
-            this.comboBox4.Text = "Import/ExportCSV Type";
+            this.importExportCombo.Location = new System.Drawing.Point(12, 26);
+            this.importExportCombo.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.importExportCombo.Name = "importExportCombo";
+            this.importExportCombo.Size = new System.Drawing.Size(166, 21);
+            this.importExportCombo.TabIndex = 12;
+            this.importExportCombo.Text = "Import/ExportCSV Type";
+            this.importExportCombo.SelectedIndexChanged += new System.EventHandler(this.comboBox4_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(59, 146);
+            this.label5.Location = new System.Drawing.Point(25, 65);
+            this.label5.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(116, 29);
+            this.label5.Size = new System.Drawing.Size(51, 13);
             this.label5.TabIndex = 15;
             this.label5.Text = "Condition";
             // 
-            // button9
+            // updateDataBtn
             // 
-            this.button9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button9.Location = new System.Drawing.Point(878, 165);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(383, 61);
-            this.button9.TabIndex = 14;
-            this.button9.Text = "Update Data";
-            this.button9.UseVisualStyleBackColor = false;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
+            this.updateDataBtn.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.updateDataBtn.Location = new System.Drawing.Point(376, 74);
+            this.updateDataBtn.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.updateDataBtn.Name = "updateDataBtn";
+            this.updateDataBtn.Size = new System.Drawing.Size(164, 27);
+            this.updateDataBtn.TabIndex = 14;
+            this.updateDataBtn.Text = "Update Data";
+            this.updateDataBtn.UseVisualStyleBackColor = false;
+            this.updateDataBtn.Click += new System.EventHandler(this.button9_Click);
             // 
             // textBox3
             // 
-            this.textBox3.Location = new System.Drawing.Point(64, 178);
+            this.textBox3.Location = new System.Drawing.Point(27, 80);
+            this.textBox3.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(799, 35);
+            this.textBox3.Size = new System.Drawing.Size(345, 20);
             this.textBox3.TabIndex = 13;
             this.textBox3.Text = "SET column=value where column = x";
             // 
             // groupBox4
             // 
             this.groupBox4.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.groupBox4.Controls.Add(this.comboBox4);
-            this.groupBox4.Controls.Add(this.button3);
-            this.groupBox4.Controls.Add(this.button4);
-            this.groupBox4.Location = new System.Drawing.Point(462, 741);
+            this.groupBox4.Controls.Add(this.importExportCombo);
+            this.groupBox4.Controls.Add(this.exportBtn);
+            this.groupBox4.Controls.Add(this.importBtn);
+            this.groupBox4.Location = new System.Drawing.Point(198, 332);
+            this.groupBox4.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(436, 346);
+            this.groupBox4.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox4.Size = new System.Drawing.Size(187, 155);
             this.groupBox4.TabIndex = 7;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Import/ ExportCSV";
@@ -450,29 +485,32 @@
             this.groupBox5.BackColor = System.Drawing.SystemColors.ControlLight;
             this.groupBox5.Controls.Add(this.label4);
             this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.button8);
+            this.groupBox5.Controls.Add(this.filterDataBtn);
             this.groupBox5.Controls.Add(this.textBox3);
-            this.groupBox5.Controls.Add(this.button9);
+            this.groupBox5.Controls.Add(this.updateDataBtn);
             this.groupBox5.Controls.Add(this.textBox2);
-            this.groupBox5.Location = new System.Drawing.Point(923, 841);
+            this.groupBox5.Location = new System.Drawing.Point(396, 377);
+            this.groupBox5.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(1292, 246);
+            this.groupBox5.Padding = new System.Windows.Forms.Padding(1, 1, 1, 1);
+            this.groupBox5.Size = new System.Drawing.Size(554, 110);
             this.groupBox5.TabIndex = 16;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Data Control";
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(14F, 29F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(2227, 1117);
+            this.ClientSize = new System.Drawing.Size(961, 492);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox5);
+            this.Margin = new System.Windows.Forms.Padding(1, 1, 1, 1);
             this.Name = "Form1";
             this.Text = "SQL Server Manager";
             this.groupBox1.ResumeLayout(false);
@@ -491,39 +529,39 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.Label databaseLabel;
+        private System.Windows.Forms.Label tableLabel;
+        private System.Windows.Forms.ComboBox databaseCombo;
+        private System.Windows.Forms.ComboBox tablesCombo;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.BindingSource dataSetDJBindingSource;
         private DataSetDJ dataSetDJ;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button selectBtn;
         private System.Windows.Forms.CheckedListBox checkedListBox1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.Button createBtn;
+        private System.Windows.Forms.Button exportBtn;
+        private System.Windows.Forms.Button importBtn;
+        private System.Windows.Forms.ComboBox objectTypeCombo;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox nameTextBox;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button deleteTableBtn;
+        private System.Windows.Forms.Button deleteDatabaseBtn;
+        private System.Windows.Forms.Button deleteBtn;
         private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button filterDataBtn;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox comboBox4;
+        private System.Windows.Forms.ComboBox importExportCombo;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button9;
+        private System.Windows.Forms.Button updateDataBtn;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.GroupBox groupBox5;
-        private System.Windows.Forms.ComboBox comboBox6;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.ComboBox comboBox5;
+        private System.Windows.Forms.ComboBox columnPropsCombo;
+        private System.Windows.Forms.CheckBox autoIncrementCheckBox;
+        private System.Windows.Forms.ComboBox columnTypeCombo;
     }
 }
 

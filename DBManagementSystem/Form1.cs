@@ -37,7 +37,7 @@ namespace DBManagementSystem
                 GetDatabases();
             }
 
-            comboBox1.DataSource = _connection.Databases;
+            databaseCombo.DataSource = _connection.Databases;
         }
 
         public void GetDatabases()
@@ -115,7 +115,7 @@ namespace DBManagementSystem
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _connection.ActualDatabase = comboBox1.GetItemText(this.comboBox1.SelectedItem);
+            _connection.ActualDatabase = databaseCombo.GetItemText(this.databaseCombo.SelectedItem);
             GetTables(_connection.ActualDatabase);
             Console.WriteLine(_connection.ActualDatabase);
             ChangeComboBox2();
@@ -123,12 +123,12 @@ namespace DBManagementSystem
 
         private void ChangeComboBox2()
         {
-            comboBox2.DataSource = _connection.Tables;
+            tablesCombo.DataSource = _connection.Tables;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            comboBox2.DataSource = _connection.Tables;
+            tablesCombo.DataSource = _connection.Tables;
         }
 
         private void button2_Click_1(object sender, EventArgs e)
@@ -144,7 +144,7 @@ namespace DBManagementSystem
 
         private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _connection.ActualTable = comboBox2.GetItemText(this.comboBox2.SelectedItem);
+            _connection.ActualTable = tablesCombo.GetItemText(this.tablesCombo.SelectedItem);
             GetColumns(_connection.ActualTable);
             checkedListBox1.Items.Clear();
             foreach (String tableName in _connection.Columns)
@@ -175,8 +175,8 @@ namespace DBManagementSystem
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string objekt = comboBox3.GetItemText(comboBox3.SelectedItem);
-            string meno = textBox1.Text;
+            string objekt = objectTypeCombo.GetItemText(objectTypeCombo.SelectedItem);
+            string meno = nameTextBox.Text;
 
             if (objekt == "Table")
             {
@@ -187,10 +187,10 @@ namespace DBManagementSystem
             }
             else if (objekt == "Column")
             {
-                string columnType = comboBox5.GetItemText(comboBox5.SelectedItem);
-                bool autoIncrement = checkBox1.Checked;
-                bool pk = comboBox6.GetItemText(comboBox6.SelectedItem) == "Primary Key" ? true : false;
-                bool unique = comboBox6.GetItemText(comboBox6.SelectedItem) == "Unique" ? true : false;
+                string columnType = columnTypeCombo.GetItemText(columnTypeCombo.SelectedItem);
+                bool autoIncrement = autoIncrementCheckBox.Checked;
+                bool pk = columnPropsCombo.GetItemText(columnPropsCombo.SelectedItem) == "Primary Key" ? true : false;
+                bool unique = columnPropsCombo.GetItemText(columnPropsCombo.SelectedItem) == "Unique" ? true : false;
                 //WriteLine(meno + columnType + "|"+ autoIncrement + unique +pk);
                 ObjectCreator.CreateColumn(_connection, meno, columnType, autoIncrement, unique, pk);
             }
@@ -198,7 +198,7 @@ namespace DBManagementSystem
 
         private void button3_Click(object sender, EventArgs e)
         {
-            string type = comboBox4.GetItemText(comboBox4.SelectedItem);
+            string type = importExportCombo.GetItemText(importExportCombo.SelectedItem);
             if (type == "CSV")
             {
                 new ExportDialog().ShowDialog("ExportCSV Data");
@@ -229,7 +229,7 @@ namespace DBManagementSystem
             
             ObjectRemover.DeleteTable(_connection);
             ChangeComboBox2();
-            comboBox2.Refresh();
+            tablesCombo.Refresh();
         }
 
         private void textBox2_Click(object sender, EventArgs e)
@@ -291,6 +291,11 @@ namespace DBManagementSystem
             {
                 Console.WriteLine(ex.StackTrace);
             }
+        }
+
+        private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

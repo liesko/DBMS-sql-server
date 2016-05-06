@@ -46,7 +46,7 @@ namespace DBManagementSystem.DataHandler
             }
 
             // import new table data
-            SqlBulkCopy bc = new SqlBulkCopy(conString, SqlBulkCopyOptions.TableLock);
+            SqlBulkCopy bc = new SqlBulkCopy(connection.Connection.ConnectionString, SqlBulkCopyOptions.TableLock);
             bc.DestinationTableName = connection.ActualTable;
             bc.BatchSize = dt.Rows.Count;
             con.Open();
