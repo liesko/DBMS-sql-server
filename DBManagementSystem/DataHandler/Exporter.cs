@@ -1,4 +1,5 @@
-﻿using System.Data;
+﻿using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using System.IO;
@@ -13,39 +14,54 @@ namespace DBManagementSystem.DataHandler
 
         public static void ExportCSV(DataGridView dataGridView)
         {
-            //Build the CSV file data as a Comma separated string.
-            string csv = string.Empty;
-            DataGridView dataGridView1 = dataGridView;
-
-            //Add the Header row for CSV file.
-            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            //test to see if the DataGridView has any rows
+            if (dataGridView.RowCount > 0)
             {
-                csv += column.HeaderText + ',';
-            }
+                string value = "";
+                DataGridViewRow dr = new DataGridViewRow();
+                StreamWriter swOut = new StreamWriter("C:\\CSV\\DataGridViewExport.csv");
 
-            //Add new line.
-            csv += "\r\n";
-
-            //Adding the Rows
-            foreach (DataGridViewRow row in dataGridView1.Rows)
-            {
-                foreach (DataGridViewCell cell in row.Cells)
+                //write header rows to csv
+                for (int i = 0; i <= dataGridView.Columns.Count - 1; i++)
                 {
-                    //Add the Data rows.
-                    if (cell.Value != null)
+                    if (i > 0)
                     {
-                        csv += cell.Value.ToString().Replace(",", ";") + ',';
+                        swOut.Write(",");
                     }
-
+                    swOut.Write(dataGridView.Columns[i].HeaderText);
                 }
 
-                //Add new line.
-                csv += "\r\n";
-            }
+                swOut.WriteLine();
 
-            //Exporting to CSV.
-            string folderPath = "C:\\CSV\\";
-            File.WriteAllText(folderPath + FileName +".csv", csv);
+                //write DataGridView rows to csv
+                for (int j = 0; j <= dataGridView.Rows.Count - 2; j++)
+                {
+                    if (j > 0)
+                    {
+                        swOut.WriteLine();
+                    }
+
+                    dr = dataGridView.Rows[j];
+
+                    for (int i = 0; i <= dataGridView.Columns.Count - 1; i++)
+                    {
+                        if (i > 0)
+                        {
+                            swOut.Write(",");
+                        }
+                        value = dr.Cells[i].Value.ToString();
+                        //replace comma's with spaces
+                        value = value.Replace(',', ' ');
+                        //replace embedded newlines with spaces
+                        value = value.Replace(Environment.NewLine, " ");
+
+                        swOut.Write(value);
+
+                    }
+                }
+                swOut.Close();
+            }
+            
         }
 
         public static void ExportXML(NewConnection connection)
