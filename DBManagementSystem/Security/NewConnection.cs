@@ -23,21 +23,25 @@ namespace DBManagementSystem.Security
         public string ActualDatabase { get; set; }
         public string ActualTable { get; set; }
 
-    public NewConnection(string user, string password, string ip, string catalog)
+        public NewConnection(string user, string password, string ip, string catalog)
         {
             this._user = user;
             this._password = password;
             this._ip = ip;
             this._catalog = catalog;
             //string connectionString = "Data Source=" + _ip + ";Initial Catalog=" + _catalog + ";User ID=" + _user + ";Password=" + _password;
-            this.Connection = new SqlConnection("Data Source=127.0.0.1,3306;Initial Catalog=DatabazoveJazyky;User ID=sa;Password=oracle");
+            string conn2 = @"Data Source = SK1A991C; Initial Catalog = master; 
+                                        Integrated Security = True";
+            this.Connection = new SqlConnection(conn2);
             //Console.WriteLine(connectionString);
             Connect();
         }
 
         public NewConnection(SqlConnection conn)
         {
-            this.Connection = new SqlConnection("Data Source=127.0.0.1,3306;Initial Catalog=DatabazoveJazyky;User ID=sa;Password=oracle");
+            string conn2 = @"Data Source = SK1A991C; Initial Catalog = master; 
+                                        Integrated Security = True";
+            this.Connection = new SqlConnection(conn2);
             Connect();
 
         }
