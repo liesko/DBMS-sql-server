@@ -14,26 +14,16 @@ namespace DBManagementSystem.DataHandler
     {
         public static void ImportData(NewConnection connection, string path)
         {
-            //string conString = "Data Source=127.0.0.1,3306;Initial Catalog=DatabazoveJazyky;User ID=sa;Password=oracle";
-
-            string conString = connection.Connection.ConnectionString;
-            SqlConnection con = new SqlConnection(conString);
-            string filepath = path == "" ? "C:\\CSV\\import.csv" : path;
-
-            // set stream reader
-            StreamReader sr = new StreamReader(filepath);
+            StreamReader sr = new StreamReader(path);
             string line = sr.ReadLine();
             string[] value = line.Split(',');
             DataTable dt = new DataTable();
             DataRow row;
-
-            // loop columns
             foreach (string dc in value)
             {
                 dt.Columns.Add(new DataColumn(dc));
             }
 
-            // add new rows
             while (!sr.EndOfStream)
             {
                 value = sr.ReadLine().Split(',');
@@ -44,14 +34,50 @@ namespace DBManagementSystem.DataHandler
                     dt.Rows.Add(row);
                 }
             }
-
-            // import new table data
-            SqlBulkCopy bc = new SqlBulkCopy(connection.Connection.ConnectionString, SqlBulkCopyOptions.TableLock);
-            bc.DestinationTableName = connection.ActualTable;
-            bc.BatchSize = dt.Rows.Count;
-            con.Open();
-            bc.WriteToServer(dt);
-            bc.Close();
+            DataTableToDbTable(connection, dt);
         }
+        public static void ImportXMLData(NewConnection connection, string path)
+        {
+            DataSet ds = new DataSet();
+            ds.ReadXml(path);
+            DataTable dt = ds.Tables[0];
+            DataTableToDbTable(connection, dt);
+        }
+
+        public static void ImportSQLData(NewConnection connection, string path)
+        {
+            StreamReader reader = new StreamReader(path);
+            string line;
+
+            while (!reader.EndOfStream)
+            {
+                line = reader.ReadToEnd();
+                var command = connection.Connection.CreateCommand();
+                command.CommandText = line;
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch (SqlException exc)
+                {
+                    Console.WriteLine(exc.Message);
+                }
+            }
+        }
+
+        private static void DataTableToDbTable(NewConnection connection, DataTable dt)
+        {
+            string conString = connection.Connection.ConnectionString;
+            SqlConnection con = new SqlConnection(conString);
+
+            SqlBulkCopy bc = new SqlBulkCopy(con.ConnectionString, SqlBulkCopyOptions.TableLock);
+            foreach (DataColumn col in dt.Columns)
+            {
+                bc.ColumnMappings.Add(col.ColumnName, col.ColumnName);
+            }
+            bc.DestinationTableName = connection.ActualTable;
+            bc.WriteToServer(dt);
+        }
+
     }
 }

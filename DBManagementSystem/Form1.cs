@@ -201,11 +201,22 @@ namespace DBManagementSystem
             string type = importExportCombo.GetItemText(importExportCombo.SelectedItem);
             if (type == "CSV")
             {
-                new ExportDialog().ShowDialog("ExportCSV Data");
+                new ExportDialog().ShowDialog("Export data to CSV from DatagridView and TABLE: "+_connection.ActualTable);
                 Exporter.ExportCSV(dataGridView1);
             } else if (type == "XML")
             {
+                new ExportDialog().ShowDialog("ExportXML Data from actual TABLE:"+_connection.ActualTable);
                 Exporter.ExportXML(_connection);
+            }
+            else if (type == "SQL")
+            {
+                new ExportDialog().ShowDialog("Export SQL (insert) from actual TABLE:" + _connection.ActualTable);
+                Exporter.ExportSQL(_connection);
+            }
+            else if (type == "Grid2{DF")
+            {
+                new ExportDialog().ShowDialog("Export DataGridView to PDF");
+                Exporter.ExportGridToPDF(_connection);
             }
         }
 
@@ -270,8 +281,20 @@ namespace DBManagementSystem
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Importer.ImportData(_connection, "");
-            
+            DialogResult result = openFileDialog.ShowDialog(); // Show the dialog.
+            string type = importExportCombo.GetItemText(importExportCombo.SelectedItem.ToString());
+            if (type == "CSV")
+            {
+                Importer.ImportData(_connection, openFileDialog.FileName);
+            }
+            else if (type == "XML")
+            {
+                Importer.ImportXMLData(_connection, openFileDialog.FileName);
+            }
+            else if (type == "SQL")
+            {
+                Importer.ImportSQLData(_connection, openFileDialog.FileName);
+            }
         }
 
         private void button9_Click(object sender, EventArgs e)
@@ -294,6 +317,29 @@ namespace DBManagementSystem
         }
 
         private void comboBox4_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string type = importExportCombo.GetItemText(importExportCombo.SelectedItem.ToString());
+            if (type == "Grid2PDF")
+            {
+                importBtn.Enabled = false;
+            }
+            else
+            {
+                importBtn.Enabled = true;
+            }
+        }
+
+        private void openFileDialog2_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
