@@ -11,6 +11,9 @@ using Microsoft.SqlServer.Management.Smo.SqlEnum;
 //using Microsoft.SqlServer.Management.Smo.CoreEnum;
 using System.Configuration;
 using System.Collections.Specialized;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Windows.Forms;
+using Database = Microsoft.SqlServer.Management.Smo.Database;
 
 namespace DBManagementSystem.DataHandler
 {
@@ -99,7 +102,9 @@ namespace DBManagementSystem.DataHandler
 
             StringBuilder sb = new StringBuilder();
             // create TABLE script - creation
-            foreach(Table tbl in db.Tables)
+            // EXPORT NA CREATE TABLE SA NEKONA!!!! ale fungovalo to...
+            /*
+            foreach(CrystalDecisions.CrystalReports.Engine.Table tbl in db.Tables)
             {
                 if (tbl.Name==connection.ActualTable)
                 {
@@ -110,7 +115,7 @@ namespace DBManagementSystem.DataHandler
                     options.Indexes = true;
                     options.IncludeHeaders = true;
 
-                    StringCollection coll = tbl.Script(options);
+                    StringCollection coll= tbl.Script(options);
                     foreach (string str in coll)
                     {
                         sb.Append(str);
@@ -118,6 +123,7 @@ namespace DBManagementSystem.DataHandler
                     }
                 }
             }
+            */
             // list of insert script - creation
             sb.Append(Environment.NewLine);
             var connStr = connection.Connection.ConnectionString;
@@ -157,9 +163,12 @@ namespace DBManagementSystem.DataHandler
             fs.Write(sb.ToString());
             fs.Close();
         }
-        public static void ExportGridToPDF(NewConnection connection)
+        public static void ExportGridToPDF(NewConnection connection, CrystalReportViewer crystalReportVieverParam)
         {
-            // Code Here
+            ReportDocument cryRpt = new ReportDocument();
+            cryRpt.Load("C:\\Users\\A616758\\Desktop\\DBMS_SQL_SERVER\\DBMS-sql-server\\DBManagementSystem\\CrystalReport3.rpt");
+            crystalReportVieverParam.ReportSource= cryRpt;
+            crystalReportVieverParam.Refresh();
         }
     }
 }

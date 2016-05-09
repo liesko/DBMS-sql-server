@@ -8,6 +8,7 @@ using System.Windows.Forms;
 using DBManagementSystem.DataHandler;
 using DBManagementSystem.Security;
 using DBManagementSystem.View;
+using CrystalDecisions.Windows.Forms;
 
 namespace DBManagementSystem
 {
@@ -213,10 +214,10 @@ namespace DBManagementSystem
                 new ExportDialog().ShowDialog("Export SQL (insert) from actual TABLE:" + _connection.ActualTable);
                 Exporter.ExportSQL(_connection);
             }
-            else if (type == "Grid2{DF")
+            else if (type == "Grid2PDF")
             {
-                new ExportDialog().ShowDialog("Export DataGridView to PDF");
-                Exporter.ExportGridToPDF(_connection);
+                //new ExportDialog().ShowDialog("Export DataGridView to PDF");
+                Exporter.ExportGridToPDF(_connection, crystalReportViewer1);
             }
         }
 
@@ -340,6 +341,16 @@ namespace DBManagementSystem
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void crystalReportViewer1_Load(object sender, EventArgs e)
         {
 
         }

@@ -44,8 +44,6 @@
             this.selectBtn = new System.Windows.Forms.Button();
             this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.dataSetDJBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSetDJ = new DBManagementSystem.DataSetDJ();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.columnPropsCombo = new System.Windows.Forms.ComboBox();
             this.autoIncrementCheckBox = new System.Windows.Forms.CheckBox();
@@ -66,14 +64,19 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.dataSetDJBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataSetDJ = new DBManagementSystem.DataSetDJ();
+            this.crystalReport31 = new DBManagementSystem.CrystalReport3();
+            this.cachedCrystalReport31 = new DBManagementSystem.CachedCrystalReport3();
+            this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJ)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJ)).BeginInit();
             this.SuspendLayout();
             // 
             // databaseLabel
@@ -240,20 +243,10 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridView1.RowTemplate.Height = 37;
-            this.dataGridView1.Size = new System.Drawing.Size(554, 355);
+            this.dataGridView1.Size = new System.Drawing.Size(361, 355);
             this.dataGridView1.TabIndex = 7;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             this.dataGridView1.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellEndEdit);
-            // 
-            // dataSetDJBindingSource
-            // 
-            this.dataSetDJBindingSource.DataSource = this.dataSetDJ;
-            this.dataSetDJBindingSource.Position = 0;
-            // 
-            // dataSetDJ
-            // 
-            this.dataSetDJ.DataSetName = "DataSetDJ";
-            this.dataSetDJ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // groupBox3
             // 
@@ -506,12 +499,34 @@
             // 
             this.openFileDialog.FileName = "openFileDialog1";
             // 
+            // dataSetDJBindingSource
+            // 
+            this.dataSetDJBindingSource.DataSource = this.dataSetDJ;
+            this.dataSetDJBindingSource.Position = 0;
+            // 
+            // dataSetDJ
+            // 
+            this.dataSetDJ.DataSetName = "DataSetDJ";
+            this.dataSetDJ.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // crystalReportViewer1
+            // 
+            this.crystalReportViewer1.ActiveViewIndex = -1;
+            this.crystalReportViewer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
+            this.crystalReportViewer1.Location = new System.Drawing.Point(761, 13);
+            this.crystalReportViewer1.Name = "crystalReportViewer1";
+            this.crystalReportViewer1.Size = new System.Drawing.Size(355, 352);
+            this.crystalReportViewer1.TabIndex = 17;
+            this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(961, 492);
+            this.ClientSize = new System.Drawing.Size(1139, 492);
+            this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.groupBox2);
@@ -521,17 +536,18 @@
             this.Margin = new System.Windows.Forms.Padding(1);
             this.Name = "Form1";
             this.Text = "SQL Server Manager";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJ)).EndInit();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox5.ResumeLayout(false);
             this.groupBox5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataSetDJ)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -571,6 +587,12 @@
         private System.Windows.Forms.CheckBox autoIncrementCheckBox;
         private System.Windows.Forms.ComboBox columnTypeCombo;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private CrystalReport3 crystalReport31;
+        private CachedCrystalReport3 cachedCrystalReport31;
+        public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        //  private CachedCrystalReport2 cachedCrystalReport21;
+        //   private CrystalReport2 crystalReport21;
+        //  private CachedCrystalReport2 cachedCrystalReport21;
     }
 }
 
