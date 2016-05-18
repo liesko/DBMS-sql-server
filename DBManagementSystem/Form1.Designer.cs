@@ -37,6 +37,7 @@
             this.databaseCombo = new System.Windows.Forms.ComboBox();
             this.tablesCombo = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.backUpTableBtn = new System.Windows.Forms.Button();
             this.deleteTableBtn = new System.Windows.Forms.Button();
             this.deleteDatabaseBtn = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -82,7 +83,7 @@
             // databaseLabel
             // 
             this.databaseLabel.AutoSize = true;
-            this.databaseLabel.Location = new System.Drawing.Point(57, 46);
+            this.databaseLabel.Location = new System.Drawing.Point(57, 13);
             this.databaseLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.databaseLabel.Name = "databaseLabel";
             this.databaseLabel.Size = new System.Drawing.Size(53, 13);
@@ -92,7 +93,7 @@
             // tableLabel
             // 
             this.tableLabel.AutoSize = true;
-            this.tableLabel.Location = new System.Drawing.Point(66, 129);
+            this.tableLabel.Location = new System.Drawing.Point(66, 86);
             this.tableLabel.Margin = new System.Windows.Forms.Padding(1, 0, 1, 0);
             this.tableLabel.Name = "tableLabel";
             this.tableLabel.Size = new System.Drawing.Size(34, 13);
@@ -102,7 +103,7 @@
             // databaseCombo
             // 
             this.databaseCombo.FormattingEnabled = true;
-            this.databaseCombo.Location = new System.Drawing.Point(14, 65);
+            this.databaseCombo.Location = new System.Drawing.Point(14, 32);
             this.databaseCombo.Margin = new System.Windows.Forms.Padding(1);
             this.databaseCombo.Name = "databaseCombo";
             this.databaseCombo.Size = new System.Drawing.Size(148, 21);
@@ -112,7 +113,7 @@
             // tablesCombo
             // 
             this.tablesCombo.FormattingEnabled = true;
-            this.tablesCombo.Location = new System.Drawing.Point(14, 148);
+            this.tablesCombo.Location = new System.Drawing.Point(14, 99);
             this.tablesCombo.Margin = new System.Windows.Forms.Padding(1);
             this.tablesCombo.Name = "tablesCombo";
             this.tablesCombo.Size = new System.Drawing.Size(148, 21);
@@ -122,6 +123,7 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.groupBox1.Controls.Add(this.backUpTableBtn);
             this.groupBox1.Controls.Add(this.deleteTableBtn);
             this.groupBox1.Controls.Add(this.deleteDatabaseBtn);
             this.groupBox1.Controls.Add(this.databaseLabel);
@@ -137,9 +139,20 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Data Source";
             // 
+            // backUpTableBtn
+            // 
+            this.backUpTableBtn.Location = new System.Drawing.Point(14, 145);
+            this.backUpTableBtn.Margin = new System.Windows.Forms.Padding(1);
+            this.backUpTableBtn.Name = "backUpTableBtn";
+            this.backUpTableBtn.Size = new System.Drawing.Size(146, 19);
+            this.backUpTableBtn.TabIndex = 7;
+            this.backUpTableBtn.Text = "Full BackUp - Database";
+            this.backUpTableBtn.UseVisualStyleBackColor = true;
+            this.backUpTableBtn.Click += new System.EventHandler(this.backUpTableBtn_Click);
+            // 
             // deleteTableBtn
             // 
-            this.deleteTableBtn.Location = new System.Drawing.Point(14, 174);
+            this.deleteTableBtn.Location = new System.Drawing.Point(14, 124);
             this.deleteTableBtn.Margin = new System.Windows.Forms.Padding(1);
             this.deleteTableBtn.Name = "deleteTableBtn";
             this.deleteTableBtn.Size = new System.Drawing.Size(146, 19);
@@ -150,7 +163,7 @@
             // 
             // deleteDatabaseBtn
             // 
-            this.deleteDatabaseBtn.Location = new System.Drawing.Point(14, 91);
+            this.deleteDatabaseBtn.Location = new System.Drawing.Point(14, 58);
             this.deleteDatabaseBtn.Margin = new System.Windows.Forms.Padding(1);
             this.deleteDatabaseBtn.Name = "deleteDatabaseBtn";
             this.deleteDatabaseBtn.Size = new System.Drawing.Size(146, 19);
@@ -516,7 +529,7 @@
             this.crystalReportViewer1.Cursor = System.Windows.Forms.Cursors.Default;
             this.crystalReportViewer1.Location = new System.Drawing.Point(761, 13);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.Size = new System.Drawing.Size(355, 352);
+            this.crystalReportViewer1.Size = new System.Drawing.Size(591, 352);
             this.crystalReportViewer1.TabIndex = 17;
             this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
@@ -525,7 +538,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1139, 492);
+            this.ClientSize = new System.Drawing.Size(1364, 482);
             this.Controls.Add(this.crystalReportViewer1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.dataGridView1);
@@ -590,6 +603,7 @@
         private CrystalReport3 crystalReport31;
         private CachedCrystalReport3 cachedCrystalReport31;
         public CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
+        private System.Windows.Forms.Button backUpTableBtn;
         //  private CachedCrystalReport2 cachedCrystalReport21;
         //   private CrystalReport2 crystalReport21;
         //  private CachedCrystalReport2 cachedCrystalReport21;

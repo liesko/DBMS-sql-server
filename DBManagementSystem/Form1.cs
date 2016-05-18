@@ -354,5 +354,15 @@ namespace DBManagementSystem
         {
 
         }
+
+        private void backUpTableBtn_Click(object sender, EventArgs e)
+        {
+            Exporter.BackUpTable(_connection);
+        }
+
+        private void restoreBtn_Click(object sender, EventArgs e)
+        {
+            Importer.restoreDb(_connection);
+        }
     }
 }
