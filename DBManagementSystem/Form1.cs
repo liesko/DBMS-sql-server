@@ -36,6 +36,8 @@ namespace DBManagementSystem
             if (_connection.IsConnected)
             {
                 GetDatabases();
+                Transaction.CreateTransaction(_connection);
+                Transaction.CommitTransaction();
             }
 
             databaseCombo.DataSource = _connection.Databases;
